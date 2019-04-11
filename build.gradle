@@ -1,0 +1,41 @@
+plugins {
+    id 'java'
+}
+
+group 'com.stefanolupo'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'net.named-data:jndn:0.20'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+// Include dependent libraries in archive.
+def mainClassName = "com.stefanolupo.Rewrite"
+//
+//jar {
+//    manifest {
+//        attributes "Main-Class": "$mainClassName"
+//    }
+//
+//    from {
+//        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+//    }
+//}
+
+
+jar {
+    manifest {
+        attributes "Main-Class": "com.stefanolupo.Test"
+    }
+
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
